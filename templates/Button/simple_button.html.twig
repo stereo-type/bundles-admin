@@ -1,0 +1,9 @@
+<li>
+    <a class="sonata-action-element" href="{{ item.parameters.url }}">
+        {% if item.parameters.icon|default(null) is not null %}
+            <i class="{{ item.parameters.icon }}" aria-hidden="true"></i>
+        {% endif %}
+        {{ item.parameters.label }}
+    </a>
+</li>
+

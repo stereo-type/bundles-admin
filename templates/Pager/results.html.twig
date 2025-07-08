@@ -1,0 +1,25 @@
+{% extends '@SonataAdmin/Pager/base_results.html.twig' %}
+
+{% block max_per_page %}
+    <label class="control-label"
+           for="{{ admin.uniqid }}_per_page">{% trans from 'SonataAdminBundle' %}label_per_page{% endtrans %}</label>
+    <select class="per-page small form-control" id="{{ admin.uniqid }}_per_page"
+            style="width: auto"
+            {% set use_select2 = params.getParameter('sonata.admin.options.select2') %}
+{#          Переопределил из-за контроллера  #}
+            {{ stimulus_controller('admin-per-page', {
+                useSelect2: use_select2
+            }) }}
+    >
+        {% for per_page in admin.getperpageoptions %}
+            <option {% if per_page == admin.datagrid.pager.maxperpage %}selected="selected"{% endif %}
+                    value="{{ admin.generateUrl(action,
+                        {'filter':
+                            admin.datagrid.getPaginationParameters(1).filter|merge(
+                            {(constant('Sonata\\AdminBundle\\Datagrid\\DatagridInterface::PER_PAGE')): per_page})
+                        }) }}">
+                {{- per_page -}}
+            </option>
+        {% endfor %}
+    </select>
+{% endblock %}

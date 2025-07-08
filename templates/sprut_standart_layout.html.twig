@@ -1,0 +1,122 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+{% block meta_tags %}
+    {% if params|default(null) is not null and params.getParameter('academ_city_admin.dashboard.favicon') is not null %}
+        <link rel="icon" href="{{ asset(params.getParameter('academ_city_admin.dashboard.favicon')) }}"
+              type="image/x-icon">
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('tabler') }}
+     {{ encore_entry_link_tags('app') }}
+     {{ encore_entry_link_tags('sonata') }}
+     <link rel="stylesheet" href="{{ asset('bundles/academcityadmin/app.css') }}">
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#        TODO хотелось бы сделать так, но не получилось пока что #}
+    {#        {{ encore_entry_script_tags('app', 'academcityadmin') }} #}
+    <script src="{{ asset('bundles/academcityadmin/runtime.js') }}"></script>
+    <script src="{{ asset('bundles/academcityadmin/app.js') }}"></script>
+{% endblock %}
+
+{% block sonata_header %}
+    {% set toggler %}
+        <button class="sidebar-toggle fa5" data-toggle="push-menu" role="button"
+                title="{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}">
+            <span class="sr-only">{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}</span>
+        </button>
+    {% endset %}
+
+    {% include 'block/header.html.twig' with {
+        'prepend': toggler|raw
+    } %}
+    {% block sonata_nav %}
+        <nav class="navbar navbar-static-top" {{ stimulus_target('sonata-sticky', 'topNavbar') }}>
+            <a href="#" class="sidebar-toggle fa5" data-toggle="push-menu"
+               role="button" title="{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}">
+                <span class="sr-only">{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}</span>
+            </a>
+
+            <div class="navbar-left">
+                {% block sonata_breadcrumb %}
+                    <div class="hidden-xs">
+                        {% if _breadcrumb is not empty or action is defined %}
+                            <ol class="nav navbar-top-links breadcrumb">
+                                {% if _breadcrumb is empty %}
+                                    {% if action is defined %}
+                                        {{ render_breadcrumbs(admin, action) }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ _breadcrumb|raw }}
+                                {% endif %}
+                            </ol>
+                        {% endif %}
+                    </div>
+                {% endblock sonata_breadcrumb %}
+            </div>
+
+            {% block sonata_top_nav_menu %}
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        {% block sonata_top_nav_menu_add_block %}
+                            {% set addBlock = include(get_global_template('add_block')) %}
+                            {% if addBlock|trim is not empty %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fas fa-plus-square fa-fw" aria-hidden="true"></i> <i
+                                                class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </a>
+                                    {{ addBlock|raw }}
+                                </li>
+                            {% endif %}
+                        {% endblock %}
+                        {% if app.user %}
+                            {% block sonata_top_nav_menu_user_block %}
+                                {% set userBlock = include(get_global_template('user_block')) %}
+                                {% if userBlock|trim is not empty %}
+                                    <li class="dropdown user-menu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fas fa-user fa-fw" aria-hidden="true"></i> <i
+                                                    class="fas fa-caret-down" aria-hidden="true"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            {{ userBlock|raw }}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            {% endblock %}
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endblock %}
+        </nav>
+    {% endblock sonata_nav %}
+{% endblock sonata_header %}
+
+{% block sonata_page_content %}
+    {{ parent() }}
+    {# Добавляем модалку настроек таблицы #}
+    <div class="modal" id="userSettingsModal" tabindex="-1" aria-labelledby="userSettingsModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-status bg-danger"></div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userSettingsModalLabel">Настройка отображения колонок таблицы</h5>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block notice %}
+    {# переопределяем шаблон флеш уведомления #}
+    {% include '@AcademCityAdmin/FlashMessage/render.html.twig' %}
+{% endblock notice %}

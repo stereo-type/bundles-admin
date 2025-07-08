@@ -1,0 +1,46 @@
+sonata_admin:
+  title: '%academ_city_admin.dashboard.title%'
+  title_logo: '%academ_city_admin.dashboard.logo%'
+  persist_filters: true
+  options:
+    html5_validate: true     # enable or disable html5 form validation
+    confirm_exit: true     # enable or disable a confirmation before navigating away
+    js_debug: '%env(bool:APP_DEBUG)%'    # enable or disable to show javascript debug messages
+    use_select2: "%sonata.admin.options.select2%"     # enable or disable usage of the Select2 jQuery library
+    use_icheck: true
+#    use_bootlint: '%env(bool:APP_DEBUG)%' # enable
+    use_stickyforms: true
+    form_type: 'standard'
+  global_search:
+    empty_boxes: show
+    admin_route: show
+  show_mosaic_button: false
+  breadcrumbs:
+    child_admin_route: show
+  dashboard:
+    blocks:
+      - { type: sonata.admin.block.admin_list, position: left }
+  templates:
+    layout: '@AcademCityAdmin/sprut_standart_layout.html.twig'
+    ajax: '@AcademCityAdmin/sprut_ajax_layout.html.twig'
+    list: '@AcademCityAdmin/CRUD/ajax_list.html.twig'
+    pager_results: '@AcademCityAdmin/Pager/results.html.twig'
+    edit: '@AcademCityAdmin/CRUD/edit.html.twig'
+    dashboard: '@AcademCityAdmin/Core/dashboard.html.twig'
+
+#  assets:
+#    stylesheets:
+#      - bundles/sonataadmin/app.css
+#      - build/vendors-node_modules_tabler_core_dist_css_tabler_css.css
+#      - build/app.css
+#      - build/sonata.css
+##       Отключить при переработке стилей
+
+
+sonata_block:
+  blocks:
+    sonata.admin.block.admin_list:
+      contexts: [ admin ]
+
+#DOCUMENTATION
+#https://docs.sonata-project.org/projects/SonataAdminBundle/en/4.x/reference/configuration/

@@ -1,0 +1,13 @@
+{
+  "bundles/academcityadmin/app.css": "/bundles/academcityadmin/app.css",
+  "bundles/academcityadmin/app.js": "/bundles/academcityadmin/app.js",
+  "bundles/academcityadmin/table.js": "/bundles/academcityadmin/table.js",
+  "bundles/academcityadmin/tree.css": "/bundles/academcityadmin/tree.css",
+  "bundles/academcityadmin/tree.js": "/bundles/academcityadmin/tree.js",
+  "bundles/academcityadmin/runtime.js": "/bundles/academcityadmin/runtime.js",
+  "bundles/academcityadmin/images/40px.png": "/bundles/academcityadmin/images/40px.106a7abc.png",
+  "bundles/academcityadmin/images/32px.png": "/bundles/academcityadmin/images/32px.51a1ca93.png",
+  "bundles/academcityadmin/images/throbber.gif": "/bundles/academcityadmin/images/throbber.f3bc1490.gif",
+  "bundles/academcityadmin/images/drag.svg": "/bundles/academcityadmin/images/drag.c869ce9b.svg",
+  "bundles/academcityadmin/images/drag.png": "/bundles/academcityadmin/images/drag.0fc81484.png"
+}

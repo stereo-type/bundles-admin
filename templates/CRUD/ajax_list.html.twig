@@ -1,0 +1,13 @@
+{% extends '@SonataAdmin/CRUD/base_list.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/academcityadmin/table.js') }}"></script>
+{% endblock %}
+
+{% block list_table %}
+    {# Обертка для поиска в js #}
+    <div class="sonata-list-wrap">
+        {{ parent() }}
+    </div>
+{% endblock %}

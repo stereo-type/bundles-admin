@@ -1,0 +1,18 @@
+parameters:
+  sonata.admin.options.select2: true
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  AcademCity\AdminBundle\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+  AcademCity\AdminBundle\Application\Component\Form\DynamicEntityTypeExtension:
+    tags: [ 'form.type_extension' ]
+
+  sonata.admin.controller.crud:
+    class: AcademCity\AdminBundle\Presentation\Controller\BaseCRUDController
+

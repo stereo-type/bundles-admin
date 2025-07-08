@@ -1,0 +1,13 @@
+<li>
+    <a type="button" class="sonata-action-element" data-bs-toggle="modal" data-bs-target="#userSettingsModal"
+
+       href="{{ item.parameters.data_getter }}" data-action="{{ item.parameters.data_action }}"
+       data-table-name="{{ item.parameters.table_name }}"
+       id="userSettingsModalTrigger">
+
+        {% if item.parameters.icon|default(null) is not null %}
+            <i class="{{ item.parameters.icon }}" aria-hidden="true"></i>
+        {% endif %}
+        {{ item.parameters.label }}
+    </a>
+</li>

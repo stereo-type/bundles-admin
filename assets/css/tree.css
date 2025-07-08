@@ -1,0 +1,50 @@
+/*Стилизация чекбоксов в jsTree*/
+#capability-tree .jstree-node {
+    /*display: flex;*/
+}
+
+#capability-tree .jstree-node .jstree-anchor > * {
+    vertical-align: middle;
+}
+
+#capability-tree .jstree-anchor .jstree-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 1px solid #206bc4;
+    background-color: #ffffff; /* Цвет фона чекбокса */
+    position: relative; /* Позиционирование элемента */
+    background-image: unset;
+}
+
+#capability-tree .jstree-anchor.jstree-clicked .jstree-checkbox{
+    background-color: #206bc4;
+    border-color: rgba(98, 105, 118, .24);
+}
+
+#capability-tree .jstree-anchor.jstree-clicked .jstree-checkbox{
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8.5 6.5 11 12 5.5'/%3E%3C/svg%3E");
+    background-position: center;
+}
+
+#capability-tree .jstree-node .jstree-icon.jstree-ocl {
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(98, 105, 118, .24);
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+}
+#capability-tree .jstree-node.jstree-closed > .jstree-icon.jstree-ocl {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath fill='none' stroke='%235d5d5d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 4v8M4 8h8'/%3E%3C/svg%3E");
+
+}
+#capability-tree .jstree-node.jstree-open > .jstree-icon.jstree-ocl {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath fill='none' stroke='%235d5d5d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8.5 12 8.5'/%3E%3C/svg%3E");
+}
+
+#capability-tree .jstree-node.jstree-leaf>.jstree-ocl {
+    background: transparent !important;
+    border: none !important;
+}

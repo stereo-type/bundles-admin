@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/academcityadmin/tree.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/academcityadmin/runtime.js') }}" defer></script>
+    <script src="{{ asset('bundles/academcityadmin/tree.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="row row-cards">
+                    {% block tree_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
