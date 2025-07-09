@@ -1,7 +1,7 @@
 {
   "name": "academcity/admin-bundle",
   "type": "symfony-bundle",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "require": {
     "twig/twig": "^3.20",
     "sonata-project/admin-bundle": "^4.35.3",

@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace AcademCity\AdminBundle\Application\Component\Managers\File;
 
-use AcademCity\AdminBundle\Kernel;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Model\ModelManagerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * @implements ModelManagerInterface<FileItem>
@@ -20,13 +20,14 @@ class FileModelManager implements ModelManagerInterface
 {
     private string $directory = '/';
 
-    public function __construct(private readonly Kernel $kernel)
-    {
+    public function __construct(
+        private readonly ParameterBagInterface $parameterBag,
+    ) {
     }
 
     private function projectDirectory(): string
     {
-        return $this->kernel->getProjectDir();
+        return $this->parameterBag->get('kernel.project_dir');
     }
 
     private function fullPath(): string
