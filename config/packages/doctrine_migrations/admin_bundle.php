@@ -7,5 +7,5 @@
 declare(strict_types=1);
 
 return [
-    'AcademCity\AdminBundle\Infrastructure\Persistence\Migrations' => '%kernel.project_dir%/vendor/academcity/admin-bundle/src/Infrastructure/Persistence/Migrations',
+    'Slcorp\AdminBundle\Infrastructure\Persistence\Migrations' => '%kernel.project_dir%/vendor/Slcorp/admin-bundle/src/Infrastructure/Persistence/Migrations',
 ];

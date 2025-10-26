@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\DependencyInjection;
+namespace Slcorp\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Filesystem\Filesystem;
 
-class AcademCityAdminExtension extends Extension implements PrependExtensionInterface
+class SlcorpAdminExtension extends Extension implements PrependExtensionInterface
 {
     private const PERMISSIONS_MASK = 0755;
 

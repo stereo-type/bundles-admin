@@ -1,4 +1,4 @@
-(self["webpackChunkacademcity_admin_bundle"] = self["webpackChunkacademcity_admin_bundle"] || []).push([["app"],{
+(self["webpackChunkSlcorp_admin_bundle"] = self["webpackChunkSlcorp_admin_bundle"] || []).push([["app"],{
 
 /***/ "./assets/css/styles.css":
 /*!*******************************!*\

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Presentation\Controller;
+namespace Slcorp\AdminBundle\Presentation\Controller;
 
-use AcademCity\AdminBundle\Application\Service\TableUserPreferenceService;
+use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

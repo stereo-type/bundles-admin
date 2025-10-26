@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\DependencyInjection;
+namespace Slcorp\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

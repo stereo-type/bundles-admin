@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component;
+namespace Slcorp\AdminBundle\Application\Component;
 
 /**
  * Упрощенный вариант BaseAdmin для вывода сущностей не требующих CUD.

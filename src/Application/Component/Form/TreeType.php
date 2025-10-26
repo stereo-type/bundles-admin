@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component\Form;
+namespace Slcorp\AdminBundle\Application\Component\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

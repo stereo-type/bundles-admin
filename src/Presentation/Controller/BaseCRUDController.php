@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Presentation\Controller;
+namespace Slcorp\AdminBundle\Presentation\Controller;
 
-use AcademCity\AdminBundle\Application\Service\TableUserPreferenceService;
+use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Sonata\AdminBundle\Exception\ModelManagerThrowable;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;

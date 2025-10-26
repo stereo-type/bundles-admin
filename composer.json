@@ -1,14 +1,14 @@
 {
-  "name": "academcity/admin-bundle",
+  "name": "slcorp/admin-bundle",
   "type": "symfony-bundle",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "require": {
     "twig/twig": "^3.20",
     "sonata-project/admin-bundle": "^4.35.3",
     "sonata-project/doctrine-orm-admin-bundle": "^4.18",
     "doctrine/doctrine-migrations-bundle": "^3.4",
-    "academcity/core-bundle": "^1.4",
-    "academcity/role-model-bundle": "^1.5"
+    "slcorp/core-bundle": "^2.0.1",
+    "slcorp/role-model-bundle": "^2.0.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AcademCity\\AdminBundle\\": "src"
+      "Slcorp\\AdminBundle\\": "src"
     }
   },
   "config": {
@@ -34,11 +34,11 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://oauth2:JRB8vueyHk5JnBfUjNsb@gitlab.dev-u.ru/bundles/core_bundle.git"
+      "url": "https://github.com/stereo-type/bundles-coregit"
     },
     {
       "type": "vcs",
-      "url": "https://oauth2:JRB8vueyHk5JnBfUjNsb@gitlab.dev-u.ru/bundles/role_model_bundle.git"
+      "url": "https://github.com/stereo-type/bundles-role-model.git"
     }
   ],
   "scripts": {

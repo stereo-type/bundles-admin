@@ -7,16 +7,16 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle;
+namespace Slcorp\AdminBundle;
 
-use AcademCity\AdminBundle\DependencyInjection\AcademCityAdminExtension;
-use AcademCity\AdminBundle\DependencyInjection\Compiler\TwigStringExtensionCompilerPass;
+use Slcorp\AdminBundle\DependencyInjection\SlcorpAdminExtension;
+use Slcorp\AdminBundle\DependencyInjection\Compiler\TwigStringExtensionCompilerPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class AcademCityAdminBundle extends AbstractBundle
+class SlcorpAdminBundle extends AbstractBundle
 {
     public function build(ContainerBuilder $container): void
     {
@@ -26,6 +26,6 @@ class AcademCityAdminBundle extends AbstractBundle
 
     public function getContainerExtension(): ?ExtensionInterface
     {
-        return new AcademCityAdminExtension();
+        return new SlcorpAdminExtension();
     }
 }

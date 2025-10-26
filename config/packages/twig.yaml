@@ -1,7 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
     form_themes:
-      - '@AcademCityAdmin/Form/tree_widget.html.twig'
+      - '@SlcorpAdmin/Form/tree_widget.html.twig'
 
 when@test:
     twig:

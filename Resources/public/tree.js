@@ -1,4 +1,4 @@
-(self["webpackChunkacademcity_admin_bundle"] = self["webpackChunkacademcity_admin_bundle"] || []).push([["tree"],{
+(self["webpackChunkSlcorp_admin_bundle"] = self["webpackChunkSlcorp_admin_bundle"] || []).push([["tree"],{
 
 /***/ "../../../node_modules/jquery/dist/jquery.js":
 /*!***************************************************!*\

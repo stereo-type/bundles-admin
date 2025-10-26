@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component\Form;
+namespace Slcorp\AdminBundle\Application\Component\Form;
 
 enum FormManyToManyPresentation: string
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\DependencyInjection\Compiler;
+namespace Slcorp\AdminBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,7 +16,7 @@ final class TwigStringExtensionCompilerPass implements CompilerPassInterface
     {
         if ($container->has('twig.loader.native_filesystem')) {
             $loaderDefinition = $container->getDefinition('twig.loader.native_filesystem');
-            $loaderDefinition->addMethodCall('addPath', [dirname(__DIR__, 3) . '/templates', 'AcademCityAdmin']);
+            $loaderDefinition->addMethodCall('addPath', [dirname(__DIR__, 3) . '/templates', 'SlcorpAdmin']);
         }
     }
 }

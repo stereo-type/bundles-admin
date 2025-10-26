@@ -6,13 +6,13 @@ services:
     autowire: true
     autoconfigure: true
 
-  AcademCity\AdminBundle\:
+  Slcorp\AdminBundle\:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-  AcademCity\AdminBundle\Application\Component\Form\DynamicEntityTypeExtension:
+  Slcorp\AdminBundle\Application\Component\Form\DynamicEntityTypeExtension:
     tags: [ 'form.type_extension' ]
 
   sonata.admin.controller.crud:
-    class: AcademCity\AdminBundle\Presentation\Controller\BaseCRUDController
+    class: Slcorp\AdminBundle\Presentation\Controller\BaseCRUDController
 

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component;
+namespace Slcorp\AdminBundle\Application\Component;
 
-use AcademCity\AdminBundle\Application\Component\Factories\NotEntityFieldDescriptionFactory;
-use AcademCity\AdminBundle\Application\Service\CapabilityServiceInterface;
-use AcademCity\AdminBundle\Application\Service\TableUserPreferenceService;
+use Slcorp\AdminBundle\Application\Component\Factories\NotEntityFieldDescriptionFactory;
+use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
+use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;

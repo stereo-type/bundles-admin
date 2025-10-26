@@ -1,11 +1,11 @@
 # СОЗДАНИЕ СПРАВОЧНИКА
-1) Создать класс-наследник ```AcademCity\AdminBundle\Application\Component\BaseAdmin```
+1) Создать класс-наследник ```Slcorp\AdminBundle\Application\Component\BaseAdmin```
 2) Прописать его в сервисе в формате 
 ```
     admin.users:
       class: App\Features\Core\Application\Service\Catalogs\Admin\UserAdmin
       tags:
-        - { name: sonata.admin, model_class: AcademCity\RoleModelBundle\Domain\Entity\User, manager_type: orm, label: "Users" }
+        - { name: sonata.admin, model_class: Slcorp\RoleModelBundle\Domain\Entity\User, manager_type: orm, label: "Users" }
 ```
 3) На странице дашборда админки (по умолчанию /admin) появится справочник
 

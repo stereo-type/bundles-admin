@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component\Factories;
+namespace Slcorp\AdminBundle\Application\Component\Factories;
 
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionFactoryInterface;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;

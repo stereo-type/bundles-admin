@@ -2,26 +2,26 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/bundles/academcityadmin/runtime.js",
-        "/bundles/academcityadmin/app.js"
+        "/bundles/Slcorpadmin/runtime.js",
+        "/bundles/Slcorpadmin/app.js"
       ],
       "css": [
-        "/bundles/academcityadmin/app.css"
+        "/bundles/Slcorpadmin/app.css"
       ]
     },
     "table": {
       "js": [
-        "/bundles/academcityadmin/runtime.js",
-        "/bundles/academcityadmin/table.js"
+        "/bundles/Slcorpadmin/runtime.js",
+        "/bundles/Slcorpadmin/table.js"
       ]
     },
     "tree": {
       "js": [
-        "/bundles/academcityadmin/runtime.js",
-        "/bundles/academcityadmin/tree.js"
+        "/bundles/Slcorpadmin/runtime.js",
+        "/bundles/Slcorpadmin/tree.js"
       ],
       "css": [
-        "/bundles/academcityadmin/tree.css"
+        "/bundles/Slcorpadmin/tree.css"
       ]
     }
   }

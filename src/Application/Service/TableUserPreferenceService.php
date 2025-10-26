@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Service;
+namespace Slcorp\AdminBundle\Application\Service;
 
-use AcademCity\AdminBundle\Application\DTO\TableUserPreferenceDTO;
-use AcademCity\AdminBundle\Domain\Entity\TableUserPreference;
-use AcademCity\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
-use AcademCity\RoleModelBundle\Domain\Entity\User;
-use AcademCity\RoleModelBundle\Domain\Repository\UserRepositoryInterface;
+use Slcorp\AdminBundle\Application\DTO\TableUserPreferenceDTO;
+use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
+use Slcorp\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
+use Slcorp\RoleModelBundle\Domain\Entity\User;
+use Slcorp\RoleModelBundle\Domain\Repository\UserRepositoryInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
 class TableUserPreferenceService

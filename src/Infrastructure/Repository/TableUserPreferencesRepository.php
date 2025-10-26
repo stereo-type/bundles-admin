@@ -1,9 +1,9 @@
 <?php
 
-namespace AcademCity\AdminBundle\Infrastructure\Repository;
+namespace Slcorp\AdminBundle\Infrastructure\Repository;
 
-use AcademCity\AdminBundle\Domain\Entity\TableUserPreference;
-use AcademCity\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
+use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
+use Slcorp\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\User\UserInterface;

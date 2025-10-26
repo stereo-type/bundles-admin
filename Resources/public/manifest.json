@@ -1,13 +1,13 @@
 {
-  "bundles/academcityadmin/app.css": "/bundles/academcityadmin/app.css",
-  "bundles/academcityadmin/app.js": "/bundles/academcityadmin/app.js",
-  "bundles/academcityadmin/table.js": "/bundles/academcityadmin/table.js",
-  "bundles/academcityadmin/tree.css": "/bundles/academcityadmin/tree.css",
-  "bundles/academcityadmin/tree.js": "/bundles/academcityadmin/tree.js",
-  "bundles/academcityadmin/runtime.js": "/bundles/academcityadmin/runtime.js",
-  "bundles/academcityadmin/images/40px.png": "/bundles/academcityadmin/images/40px.106a7abc.png",
-  "bundles/academcityadmin/images/32px.png": "/bundles/academcityadmin/images/32px.51a1ca93.png",
-  "bundles/academcityadmin/images/throbber.gif": "/bundles/academcityadmin/images/throbber.f3bc1490.gif",
-  "bundles/academcityadmin/images/drag.svg": "/bundles/academcityadmin/images/drag.c869ce9b.svg",
-  "bundles/academcityadmin/images/drag.png": "/bundles/academcityadmin/images/drag.0fc81484.png"
+  "bundles/Slcorpadmin/app.css": "/bundles/Slcorpadmin/app.css",
+  "bundles/Slcorpadmin/app.js": "/bundles/Slcorpadmin/app.js",
+  "bundles/Slcorpadmin/table.js": "/bundles/Slcorpadmin/table.js",
+  "bundles/Slcorpadmin/tree.css": "/bundles/Slcorpadmin/tree.css",
+  "bundles/Slcorpadmin/tree.js": "/bundles/Slcorpadmin/tree.js",
+  "bundles/Slcorpadmin/runtime.js": "/bundles/Slcorpadmin/runtime.js",
+  "bundles/Slcorpadmin/images/40px.png": "/bundles/Slcorpadmin/images/40px.106a7abc.png",
+  "bundles/Slcorpadmin/images/32px.png": "/bundles/Slcorpadmin/images/32px.51a1ca93.png",
+  "bundles/Slcorpadmin/images/throbber.gif": "/bundles/Slcorpadmin/images/throbber.f3bc1490.gif",
+  "bundles/Slcorpadmin/images/drag.svg": "/bundles/Slcorpadmin/images/drag.c869ce9b.svg",
+  "bundles/Slcorpadmin/images/drag.png": "/bundles/Slcorpadmin/images/drag.0fc81484.png"
 }

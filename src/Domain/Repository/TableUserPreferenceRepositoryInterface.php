@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Domain\Repository;
+namespace Slcorp\AdminBundle\Domain\Repository;
 
-use AcademCity\AdminBundle\Domain\Entity\TableUserPreference;
+use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface TableUserPreferenceRepositoryInterface

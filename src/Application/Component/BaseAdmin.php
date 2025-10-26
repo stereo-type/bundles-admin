@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Component;
+namespace Slcorp\AdminBundle\Application\Component;
 
-use AcademCity\AdminBundle\Application\Component\Form\FormManyToManyPresentation;
-use AcademCity\AdminBundle\Application\Service\CapabilityServiceInterface;
-use AcademCity\AdminBundle\Application\Service\TableUserPreferenceService;
-use AcademCity\AdminBundle\Domain\Entity\TableUserPreference;
-use AcademCity\RoleModelBundle\Application\Enum\CapabilityAction;
+use Slcorp\AdminBundle\Application\Component\Form\FormManyToManyPresentation;
+use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
+use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
+use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
+use Slcorp\RoleModelBundle\Application\Enum\CapabilityAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\AssociationMapping;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -378,7 +378,7 @@ abstract class BaseAdmin extends AbstractAdmin
         /**Добавляем кнопку только на список - кнопка-просмотр дерева операций*/
         if ('list' === $action) {
             $buttonList['settings'] = [
-                'template' => '@AcademCityAdmin/Button/modal_button.html.twig',
+                'template' => '@SlcorpAdmin/Button/modal_button.html.twig',
                 'parameters' => [
                     'label' => 'Настройки',
                     'icon' => 'fa fa-gears',

@@ -12,15 +12,15 @@
      {{ encore_entry_link_tags('tabler') }}
      {{ encore_entry_link_tags('app') }}
      {{ encore_entry_link_tags('sonata') }}
-     <link rel="stylesheet" href="{{ asset('bundles/academcityadmin/app.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/Slcorpadmin/app.css') }}">
  {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {#        TODO хотелось бы сделать так, но не получилось пока что #}
-    {#        {{ encore_entry_script_tags('app', 'academcityadmin') }} #}
-    <script src="{{ asset('bundles/academcityadmin/runtime.js') }}"></script>
-    <script src="{{ asset('bundles/academcityadmin/app.js') }}"></script>
+    {#        {{ encore_entry_script_tags('app', 'Slcorpadmin') }} #}
+    <script src="{{ asset('bundles/Slcorpadmin/runtime.js') }}"></script>
+    <script src="{{ asset('bundles/Slcorpadmin/app.js') }}"></script>
 {% endblock %}
 
 {% block sonata_header %}
@@ -118,5 +118,5 @@
 
 {% block notice %}
     {# переопределяем шаблон флеш уведомления #}
-    {% include '@AcademCityAdmin/FlashMessage/render.html.twig' %}
+    {% include '@SlcorpAdmin/FlashMessage/render.html.twig' %}
 {% endblock notice %}

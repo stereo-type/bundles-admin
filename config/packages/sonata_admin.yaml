@@ -21,12 +21,12 @@ sonata_admin:
     blocks:
       - { type: sonata.admin.block.admin_list, position: left }
   templates:
-    layout: '@AcademCityAdmin/sprut_standart_layout.html.twig'
-    ajax: '@AcademCityAdmin/sprut_ajax_layout.html.twig'
-    list: '@AcademCityAdmin/CRUD/ajax_list.html.twig'
-    pager_results: '@AcademCityAdmin/Pager/results.html.twig'
-    edit: '@AcademCityAdmin/CRUD/edit.html.twig'
-    dashboard: '@AcademCityAdmin/Core/dashboard.html.twig'
+    layout: '@SlcorpAdmin/sprut_standart_layout.html.twig'
+    ajax: '@SlcorpAdmin/sprut_ajax_layout.html.twig'
+    list: '@SlcorpAdmin/CRUD/ajax_list.html.twig'
+    pager_results: '@SlcorpAdmin/Pager/results.html.twig'
+    edit: '@SlcorpAdmin/CRUD/edit.html.twig'
+    dashboard: '@SlcorpAdmin/Core/dashboard.html.twig'
 
 #  assets:
 #    stylesheets:

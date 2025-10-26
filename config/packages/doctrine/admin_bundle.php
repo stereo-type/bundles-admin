@@ -8,11 +8,11 @@
 declare(strict_types=1);
 
 return [
-    'AcademCity\AdminBundle' => [
+    'Slcorp\AdminBundle' => [
         'type' => 'attribute',
         'is_bundle' => false,
-        'dir' => '%kernel.project_dir%/vendor/academcity/admin-bundle/src/Domain/Entity',
-        'prefix' => 'AcademCity\AdminBundle\Domain\Entity',
-        'alias' => 'AcademCity\AdminBundle',
+        'dir' => '%kernel.project_dir%/vendor/Slcorp/admin-bundle/src/Domain/Entity',
+        'prefix' => 'Slcorp\AdminBundle\Domain\Entity',
+        'alias' => 'Slcorp\AdminBundle',
     ],
 ];

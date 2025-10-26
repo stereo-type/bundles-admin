@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\DTO;
+namespace Slcorp\AdminBundle\Application\DTO;
 
-use AcademCity\RoleModelBundle\Domain\Entity\User;
+use Slcorp\RoleModelBundle\Domain\Entity\User;
 
 class TableUserPreferenceDTO
 {

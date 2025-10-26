@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace AcademCity\AdminBundle\Application\Service;
+namespace Slcorp\AdminBundle\Application\Service;
 
-use AcademCity\RoleModelBundle\Application\Enum\CapabilityAction;
-use AcademCity\RoleModelBundle\Application\Service\Operation\CapabilityServiceInterface as RoleCapabilityServiceInterface;
+use Slcorp\RoleModelBundle\Application\Enum\CapabilityAction;
+use Slcorp\RoleModelBundle\Application\Service\Operation\CapabilityServiceInterface as RoleCapabilityServiceInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Security\Handler\SecurityHandlerInterface;
 

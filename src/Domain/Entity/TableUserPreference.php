@@ -1,8 +1,8 @@
 <?php
 
-namespace AcademCity\AdminBundle\Domain\Entity;
+namespace Slcorp\AdminBundle\Domain\Entity;
 
-use AcademCity\RoleModelBundle\Domain\Entity\User;
+use Slcorp\RoleModelBundle\Domain\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
