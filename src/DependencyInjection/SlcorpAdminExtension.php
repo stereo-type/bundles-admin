@@ -27,16 +27,9 @@ class SlcorpAdminExtension extends Extension implements PrependExtensionInterfac
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yaml');
 
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-
-        $this->filesystem = new Filesystem();
-        $this->projectRoot = $container->getParameter('kernel.project_dir');
-
-        $container->setParameter('slcorp_admin.dashboard.title', $config['dashboard']['title']);
-        $container->setParameter('slcorp_admin.dashboard.logo', $config['dashboard']['logo']);
-        $container->setParameter('slcorp_admin.dashboard.favicon', $config['dashboard']['favicon']);
-
+        $this->addDoctrineMappings($container);
+        $this->addDoctrineMigrations($container);
+        $this->addRoutes($container);
         $this->addDoctrineMappings($container);
         $this->addDoctrineMigrations($container);
         $this->addRoutes($container);
@@ -44,11 +37,28 @@ class SlcorpAdminExtension extends Extension implements PrependExtensionInterfac
 
     public function prepend(ContainerBuilder $container)
     {
+        $this->filesystem = new Filesystem();
+        $this->projectRoot = $container->getParameter('kernel.project_dir');
+        // 1. СНАЧАЛА обрабатываем конфиг и устанавливаем параметры
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('slcorp_admin.dashboard.title', $config['dashboard']['title']);
+        $container->setParameter('slcorp_admin.dashboard.logo', $config['dashboard']['logo']);
+        $container->setParameter('slcorp_admin.dashboard.favicon', $config['dashboard']['favicon']);
+
+        // 2. ТЕПЕРЬ загружаем yaml - параметры уже есть!
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config/packages'));
         $loader->load('sonata_admin.yaml');
         $loader->load('sonata_block.yaml');
         $loader->load('sonata_form.yaml');
         $loader->load('twig.yaml');
+    }
+
+    public function getAlias(): string
+    {
+        return 'slcorp_admin';
     }
 
     private function addDoctrineMappings(ContainerBuilder $container): void
