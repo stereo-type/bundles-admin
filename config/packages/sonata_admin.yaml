@@ -20,8 +20,8 @@ sonata_admin:
     blocks:
       - { type: sonata.admin.block.admin_list, position: left }
   templates:
-    layout: '@SlcorpAdmin/sprut_standart_layout.html.twig'
-    ajax: '@SlcorpAdmin/sprut_ajax_layout.html.twig'
+    layout: '@SlcorpAdmin/standart_layout.html.twig'
+    ajax: '@SlcorpAdmin/ajax_layout.html.twig'
     list: '@SlcorpAdmin/CRUD/ajax_list.html.twig'
     pager_results: '@SlcorpAdmin/Pager/results.html.twig'
     edit: '@SlcorpAdmin/CRUD/edit.html.twig'
