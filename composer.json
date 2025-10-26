@@ -1,14 +1,15 @@
 {
   "name": "slcorp/admin-bundle",
   "type": "symfony-bundle",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "require": {
+    "php": ">=8.4",
     "twig/twig": "^3.20",
     "sonata-project/admin-bundle": "^4.35.3",
     "sonata-project/doctrine-orm-admin-bundle": "^4.18",
     "doctrine/doctrine-migrations-bundle": "^3.4",
-    "slcorp/core-bundle": "^2.0.1",
-    "slcorp/role-model-bundle": "^2.0.1"
+    "slcorp/core-bundle": "^2.0.4",
+    "slcorp/role-model-bundle": "^2.0.2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
@@ -34,7 +35,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/stereo-type/bundles-coregit"
+      "url": "https://github.com/stereo-type/bundles-core.git"
     },
     {
       "type": "vcs",

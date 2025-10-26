@@ -2,10 +2,10 @@
 
 namespace Slcorp\AdminBundle\Infrastructure\Repository;
 
-use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
-use Slcorp\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
+use Slcorp\AdminBundle\Domain\Repository\TableUserPreferenceRepositoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class TableUserPreferencesRepository implements TableUserPreferenceRepositoryInterface

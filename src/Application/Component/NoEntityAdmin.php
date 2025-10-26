@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Slcorp\AdminBundle\Application\Component;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Slcorp\AdminBundle\Application\Component\Factories\NotEntityFieldDescriptionFactory;
 use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
 use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
-use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Symfony\Contracts\Translation\TranslatorInterface;

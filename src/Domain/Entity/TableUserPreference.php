@@ -2,8 +2,8 @@
 
 namespace Slcorp\AdminBundle\Domain\Entity;
 
-use Slcorp\RoleModelBundle\Domain\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Slcorp\RoleModelBundle\Domain\Entity\User;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'admin_bundle_table_user_preference')]

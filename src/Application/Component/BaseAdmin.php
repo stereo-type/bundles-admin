@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace Slcorp\AdminBundle\Application\Component;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\AssociationMapping;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Slcorp\AdminBundle\Application\Component\Form\FormManyToManyPresentation;
 use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
 use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
 use Slcorp\RoleModelBundle\Application\Enum\CapabilityAction;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\AssociationMapping;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;

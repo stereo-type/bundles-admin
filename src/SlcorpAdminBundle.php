@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Slcorp\AdminBundle;
 
-use Slcorp\AdminBundle\DependencyInjection\SlcorpAdminExtension;
 use Slcorp\AdminBundle\DependencyInjection\Compiler\TwigStringExtensionCompilerPass;
+use Slcorp\AdminBundle\DependencyInjection\SlcorpAdminExtension;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;

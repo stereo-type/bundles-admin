@@ -33,9 +33,9 @@ class SlcorpAdminExtension extends Extension implements PrependExtensionInterfac
         $this->filesystem = new Filesystem();
         $this->projectRoot = $container->getParameter('kernel.project_dir');
 
-        $container->setParameter('academ_city_admin.dashboard.title', $config['dashboard']['title']);
-        $container->setParameter('academ_city_admin.dashboard.logo', $config['dashboard']['logo']);
-        $container->setParameter('academ_city_admin.dashboard.favicon', $config['dashboard']['favicon']);
+        $container->setParameter('slcorp_admin.dashboard.title', $config['dashboard']['title']);
+        $container->setParameter('slcorp_admin.dashboard.logo', $config['dashboard']['logo']);
+        $container->setParameter('slcorp_admin.dashboard.favicon', $config['dashboard']['favicon']);
 
         $this->addDoctrineMappings($container);
         $this->addDoctrineMigrations($container);

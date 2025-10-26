@@ -1,7 +1,7 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 {% block meta_tags %}
-    {% if params|default(null) is not null and params.getParameter('academ_city_admin.dashboard.favicon') is not null %}
-        <link rel="icon" href="{{ asset(params.getParameter('academ_city_admin.dashboard.favicon')) }}"
+    {% if params|default(null) is not null and params.getParameter('slcorp_admin.dashboard.favicon') is not null %}
+        <link rel="icon" href="{{ asset(params.getParameter('slcorp_admin.dashboard.favicon')) }}"
               type="image/x-icon">
     {% endif %}
     {{ parent() }}

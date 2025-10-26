@@ -1,6 +1,6 @@
 sonata_admin:
-  title: '%academ_city_admin.dashboard.title%'
-  title_logo: '%academ_city_admin.dashboard.logo%'
+  title: '%slcorp_admin.dashboard.title%'
+  title_logo: '%slcorp_admin.dashboard.logo%'
   persist_filters: true
   options:
     html5_validate: true     # enable or disable html5 form validation
