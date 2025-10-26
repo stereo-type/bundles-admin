@@ -31,7 +31,7 @@
         </button>
     {% endset %}
 
-    {% include 'block/header.html.twig' with {
+    {% include 'block/header.twig' with {
         'prepend': toggler|raw
     } %}
     {% block sonata_nav %}
@@ -118,5 +118,5 @@
 
 {% block notice %}
     {# переопределяем шаблон флеш уведомления #}
-    {% include '@SlcorpAdmin/FlashMessage/render.html.twig' %}
+    {% include '@SlcorpAdmin/FlashMessage/render.twig' %}
 {% endblock notice %}

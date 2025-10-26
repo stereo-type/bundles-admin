@@ -1,6 +1,6 @@
 {
   "license": "UNLICENSED",
-  "name": "Slcorp-admin-bundle",
+  "name": "slcorp-admin-bundle",
   "private": true,
   "scripts": {
     "dev-server": "encore dev-server",

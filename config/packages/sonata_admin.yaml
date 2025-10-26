@@ -20,12 +20,12 @@ sonata_admin:
     blocks:
       - { type: sonata.admin.block.admin_list, position: left }
   templates:
-    layout: '@SlcorpAdmin/standart_layout.html.twig'
-    ajax: '@SlcorpAdmin/ajax_layout.html.twig'
-    list: '@SlcorpAdmin/CRUD/ajax_list.html.twig'
-    pager_results: '@SlcorpAdmin/Pager/results.html.twig'
-    edit: '@SlcorpAdmin/CRUD/edit.html.twig'
-    dashboard: '@SlcorpAdmin/Core/dashboard.html.twig'
+    layout: '@SlcorpAdmin/standart_layout.twig'
+    ajax: '@SlcorpAdmin/ajax_layout.twig'
+    list: '@SlcorpAdmin/CRUD/ajax_list.twig'
+    pager_results: '@SlcorpAdmin/Pager/results.twig'
+    edit: '@SlcorpAdmin/CRUD/edit.twig'
+    dashboard: '@SlcorpAdmin/Core/dashboard.twig'
 
 #  assets:
 #    stylesheets:
