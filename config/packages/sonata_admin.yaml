@@ -6,7 +6,6 @@ sonata_admin:
     html5_validate: true     # enable or disable html5 form validation
     confirm_exit: true     # enable or disable a confirmation before navigating away
     js_debug: '%env(bool:APP_DEBUG)%'    # enable or disable to show javascript debug messages
-    use_select2: "%sonata.admin.options.select2%"     # enable or disable usage of the Select2 jQuery library
     use_icheck: true
 #    use_bootlint: '%env(bool:APP_DEBUG)%' # enable
     use_stickyforms: true
