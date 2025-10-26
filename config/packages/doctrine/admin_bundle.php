@@ -11,7 +11,7 @@ return [
     'Slcorp\AdminBundle' => [
         'type' => 'attribute',
         'is_bundle' => false,
-        'dir' => '%kernel.project_dir%/vendor/Slcorp/admin-bundle/src/Domain/Entity',
+        'dir' => '%kernel.project_dir%/vendor/slcorp/admin-bundle/src/Domain/Entity',
         'prefix' => 'Slcorp\AdminBundle\Domain\Entity',
         'alias' => 'Slcorp\AdminBundle',
     ],

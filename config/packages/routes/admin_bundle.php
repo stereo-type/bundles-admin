@@ -7,5 +7,5 @@
 declare(strict_types=1);
 
 return [
-    'Slcorp\AdminBundle\Presentation\Controller' => '%kernel.project_dir%/vendor/Slcorp/admin-bundle/src/Presentation/Controller',
+    'Slcorp\AdminBundle\Presentation\Controller' => '%kernel.project_dir%/vendor/slcorp/admin-bundle/src/Presentation/Controller',
 ];
