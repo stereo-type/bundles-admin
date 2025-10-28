@@ -1,13 +1,13 @@
 {
-  "bundles/Slcorpadmin/app.css": "/bundles/Slcorpadmin/app.css",
-  "bundles/Slcorpadmin/app.js": "/bundles/Slcorpadmin/app.js",
-  "bundles/Slcorpadmin/table.js": "/bundles/Slcorpadmin/table.js",
-  "bundles/Slcorpadmin/tree.css": "/bundles/Slcorpadmin/tree.css",
-  "bundles/Slcorpadmin/tree.js": "/bundles/Slcorpadmin/tree.js",
-  "bundles/Slcorpadmin/runtime.js": "/bundles/Slcorpadmin/runtime.js",
-  "bundles/Slcorpadmin/images/40px.png": "/bundles/Slcorpadmin/images/40px.106a7abc.png",
-  "bundles/Slcorpadmin/images/32px.png": "/bundles/Slcorpadmin/images/32px.51a1ca93.png",
-  "bundles/Slcorpadmin/images/throbber.gif": "/bundles/Slcorpadmin/images/throbber.f3bc1490.gif",
-  "bundles/Slcorpadmin/images/drag.svg": "/bundles/Slcorpadmin/images/drag.c869ce9b.svg",
-  "bundles/Slcorpadmin/images/drag.png": "/bundles/Slcorpadmin/images/drag.0fc81484.png"
+  "bundles/slcorpadmin/app.css": "/bundles/slcorpadmin/app.css",
+  "bundles/slcorpadmin/app.js": "/bundles/slcorpadmin/app.js",
+  "bundles/slcorpadmin/table.js": "/bundles/slcorpadmin/table.js",
+  "bundles/slcorpadmin/tree.css": "/bundles/slcorpadmin/tree.css",
+  "bundles/slcorpadmin/tree.js": "/bundles/slcorpadmin/tree.js",
+  "bundles/slcorpadmin/runtime.js": "/bundles/slcorpadmin/runtime.js",
+  "bundles/slcorpadmin/images/40px.png": "/bundles/slcorpadmin/images/40px.106a7abc.png",
+  "bundles/slcorpadmin/images/32px.png": "/bundles/slcorpadmin/images/32px.51a1ca93.png",
+  "bundles/slcorpadmin/images/throbber.gif": "/bundles/slcorpadmin/images/throbber.f3bc1490.gif",
+  "bundles/slcorpadmin/images/drag.svg": "/bundles/slcorpadmin/images/drag.c869ce9b.svg",
+  "bundles/slcorpadmin/images/drag.png": "/bundles/slcorpadmin/images/drag.0fc81484.png"
 }

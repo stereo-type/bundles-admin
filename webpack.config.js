@@ -3,8 +3,8 @@ const Encore = require('@symfony/webpack-encore');
 
 Encore
     .setOutputPath('Resources/public/') // Сборка без лишней вложенности
-    .setPublicPath('/bundles/Slcorpadmin') // Symfony ищет файлы здесь
-    .setManifestKeyPrefix('bundles/Slcorpadmin')
+    .setPublicPath('/bundles/slcorpadmin') // Symfony ищет файлы здесь
+    .setManifestKeyPrefix('bundles/slcorpadmin')
     .addEntry('app', './assets/js/app.js')
     .addEntry('table', './assets/js/table.js')
     .addEntry('tree', './assets/js/tree.js')

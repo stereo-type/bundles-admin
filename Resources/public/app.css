@@ -68,12 +68,12 @@
         background-repeat: no-repeat;
         background-size: contain;
         padding-left: 10px;
-        background-image: url(/bundles/Slcorpadmin/images/drag.0fc81484.png);
-        cursor: url(/bundles/Slcorpadmin/images/drag.c869ce9b.svg) 6 6, move;
+        background-image: url(/bundles/slcorpadmin/images/drag.0fc81484.png);
+        cursor: url(/bundles/slcorpadmin/images/drag.c869ce9b.svg) 6 6, move;
 
         &:hover,
         &:active {
-            cursor: url(/bundles/Slcorpadmin/images/drag.c869ce9b.svg) 6 6, move;
+            cursor: url(/bundles/slcorpadmin/images/drag.c869ce9b.svg) 6 6, move;
         }
     }
 }

@@ -2,26 +2,26 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/bundles/Slcorpadmin/runtime.js",
-        "/bundles/Slcorpadmin/app.js"
+        "/bundles/slcorpadmin/runtime.js",
+        "/bundles/slcorpadmin/app.js"
       ],
       "css": [
-        "/bundles/Slcorpadmin/app.css"
+        "/bundles/slcorpadmin/app.css"
       ]
     },
     "table": {
       "js": [
-        "/bundles/Slcorpadmin/runtime.js",
-        "/bundles/Slcorpadmin/table.js"
+        "/bundles/slcorpadmin/runtime.js",
+        "/bundles/slcorpadmin/table.js"
       ]
     },
     "tree": {
       "js": [
-        "/bundles/Slcorpadmin/runtime.js",
-        "/bundles/Slcorpadmin/tree.js"
+        "/bundles/slcorpadmin/runtime.js",
+        "/bundles/slcorpadmin/tree.js"
       ],
       "css": [
-        "/bundles/Slcorpadmin/tree.css"
+        "/bundles/slcorpadmin/tree.css"
       ]
     }
   }
