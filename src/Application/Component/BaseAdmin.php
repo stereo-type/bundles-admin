@@ -378,7 +378,7 @@ abstract class BaseAdmin extends AbstractAdmin
         /**Добавляем кнопку только на список - кнопка-просмотр дерева операций*/
         if ('list' === $action) {
             $buttonList['settings'] = [
-                'template' => '@SlcorpAdmin/Button/modal_button.html.twig',
+                'template' => '@SlcorpAdmin/Button/modal_button.twig',
                 'parameters' => [
                     'label' => 'Настройки',
                     'icon' => 'fa fa-gears',
