@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Yaml\Yaml;
 
 class SlcorpAdminExtension extends Extension implements PrependExtensionInterface
 {
@@ -48,9 +49,20 @@ class SlcorpAdminExtension extends Extension implements PrependExtensionInterfac
         $container->setParameter('slcorp_admin.dashboard.logo', $config['dashboard']['logo']);
         $container->setParameter('slcorp_admin.dashboard.favicon', $config['dashboard']['favicon']);
 
-        // 2. ТЕПЕРЬ загружаем yaml - параметры уже есть!
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config/packages'));
-        $loader->load('sonata_admin.yaml');
+        // 2. Загружаем конфиги через prependExtensionConfig чтобы их можно было переопределить в проекте
+        $configDir = __DIR__ . '/../../config/packages';
+
+        // Загружаем sonata_admin.yaml и передаём через prependExtensionConfig для возможности переопределения
+        $sonataAdminConfigPath = $configDir . '/sonata_admin.yaml';
+        if (file_exists($sonataAdminConfigPath)) {
+            $sonataAdminConfig = Yaml::parseFile($sonataAdminConfigPath);
+            if (isset($sonataAdminConfig['sonata_admin'])) {
+                $container->prependExtensionConfig('sonata_admin', $sonataAdminConfig['sonata_admin']);
+            }
+        }
+
+        // Остальные конфиги загружаем через loader
+        $loader = new YamlFileLoader($container, new FileLocator($configDir));
         $loader->load('sonata_block.yaml');
         $loader->load('sonata_form.yaml');
         $loader->load('twig.yaml');
