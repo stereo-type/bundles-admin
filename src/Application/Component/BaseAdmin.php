@@ -50,7 +50,7 @@ abstract class BaseAdmin extends AbstractAdmin
         protected TranslatorInterface $translator,
         protected CapabilityServiceInterface $capabilityService,
         protected TableUserPreferenceService $userPreferenceService,
-        protected array $extensions,
+        protected iterable $adminExtensions,
     ) {
         parent::__construct();
         $this->ignoreTableFieldsList = $this->ignoreTableFieldsList();
@@ -59,7 +59,7 @@ abstract class BaseAdmin extends AbstractAdmin
         $this->ignoreFiltersFieldsList = $this->ignoreFiltersFieldsList();
         $this->fieldListNames = $this->fieldListNames();
         $this->setSecurityHandler($capabilityService);
-        foreach ($this->extensions as $extension) {
+        foreach ($this->adminExtensions as $extension) {
             $this->addExtension($extension);
         }
     }
