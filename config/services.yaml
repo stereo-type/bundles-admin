@@ -10,7 +10,7 @@ services:
     Sonata\AdminBundle\Admin\AdminExtensionInterface:
       tags: [ 'slcorp.admin.extension' ]
     Slcorp\AdminBundle\Application\Component\BaseAdmin:
-      arguments:
+      bind:
         $extensions: !tagged_iterator slcorp.admin.extension
 
   Slcorp\AdminBundle\:
