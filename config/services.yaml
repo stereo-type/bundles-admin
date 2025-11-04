@@ -9,6 +9,9 @@ services:
   _instanceof:
     Sonata\AdminBundle\Admin\AdminExtensionInterface:
       tags: [ 'slcorp.admin.extension' ]
+    Slcorp\AdminBundle\Application\Component\BaseAdmin:
+      arguments:
+        $extensions: !tagged_iterator slcorp.admin.extension
 
   Slcorp\AdminBundle\:
     resource: '../src/*'
@@ -26,7 +29,3 @@ services:
 
   Slcorp\AdminBundle\Application\Component\Extensions\UserSettingsExtension:
     tags: ['slcorp.admin.extension']
-
-  Slcorp\AdminBundle\Application\Component\BaseAdmin:
-    arguments:
-      $extensions: !tagged_iterator slcorp.admin.extension
