@@ -26,18 +26,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 abstract class NoEntityAdmin extends SimpleAdmin
 {
-    protected $baseRouteName;
-    protected $baseRoutePattern;
-
-    public function __construct(
-        EntityManagerInterface $entityManager,
-        TranslatorInterface $translator,
-        CapabilityServiceInterface $capabilityService,
-        TableUserPreferenceService $userPreferenceService,
-    ) {
-        parent::__construct($entityManager, $translator, $capabilityService, $userPreferenceService);
-    }
-
     protected function configure(): void
     {
         parent::configure();

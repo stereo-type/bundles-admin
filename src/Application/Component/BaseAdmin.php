@@ -16,7 +16,6 @@ use Slcorp\AdminBundle\Application\Component\Form\FormManyToManyPresentation;
 use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
 use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Slcorp\AdminBundle\Domain\Entity\TableUserPreference;
-use Slcorp\RoleModelBundle\Application\Enum\CapabilityAction;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -39,6 +38,9 @@ abstract class BaseAdmin extends AbstractAdmin
     private array $ignoreFiltersFieldsList;
     private array $fieldListNames;
 
+    private const array TIME_FIELDS = ['deleted_at', 'time_created', 'time_modified', 'created_at', 'updated_at'];
+    private const array USER_FIELDS = ['user_created', 'user_modified', 'created_by', 'updated_by', 'modified_by'];
+
     protected FormManyToManyPresentation $formManyToManyPresentation = FormManyToManyPresentation::CHECK_BOX;
 
     protected TableUserPreference $userPreference;
@@ -48,6 +50,7 @@ abstract class BaseAdmin extends AbstractAdmin
         protected TranslatorInterface $translator,
         protected CapabilityServiceInterface $capabilityService,
         protected TableUserPreferenceService $userPreferenceService,
+        protected array $extensions,
     ) {
         parent::__construct();
         $this->ignoreTableFieldsList = $this->ignoreTableFieldsList();
@@ -56,6 +59,9 @@ abstract class BaseAdmin extends AbstractAdmin
         $this->ignoreFiltersFieldsList = $this->ignoreFiltersFieldsList();
         $this->fieldListNames = $this->fieldListNames();
         $this->setSecurityHandler($capabilityService);
+        foreach ($this->extensions as $extension) {
+            $this->addExtension($extension);
+        }
     }
 
     /**Служебный метод не предназначен для переопределения
@@ -90,7 +96,7 @@ abstract class BaseAdmin extends AbstractAdmin
         return $meta->getReflectionClass()->getShortName();
     }
 
-    final protected function userPreferences(): TableUserPreference
+    final public function userPreferences(): TableUserPreference
     {
         if (isset($this->userPreference)) {
             return $this->userPreference;
@@ -131,31 +137,12 @@ abstract class BaseAdmin extends AbstractAdmin
 
         foreach ($orderedFields as $fieldName) {
             $options = $this->commonOptions($fieldName);
-            if (!in_array($fieldName, $ignoreFieldsList, true) && !in_array($fieldName, $hidden, true)) {
-                if (!$list->has($fieldName)) {
-                    $list->add($fieldName, fieldDescriptionOptions: $options);
-                }
+            if (!in_array($fieldName, $ignoreFieldsList, true)
+                && !in_array($fieldName, $hidden, true)
+                && !$list->has($fieldName)
+            ) {
+                $list->add($fieldName, fieldDescriptionOptions: $options);
             }
-        }
-
-        $actionNames = [
-            CapabilityAction::EDIT,
-            CapabilityAction::DELETE,
-        ];
-
-        $actions = $this->configureTableActionButtons($actionNames);
-
-        if (!empty($actions)) {
-            $list->add($this->translator->trans('action'), 'actions', [
-                'actions' => $actions,
-            ]);
-        }
-
-        // При первичной инициализации записываем настройки пользователей - все поля по умолчанию включены
-        if (empty($order) && empty($hidden)) {
-            $tableData = $userPreferences->getTableData();
-            $tableData['order'] = array_values(array_filter($list->keys(), static fn ($key) => !in_array($list->get($key)->getType(), ['actions', 'batch'])));
-            $this->userPreferenceService->setTableData($userPreferences->getTableClass(), $tableData);
         }
     }
 
@@ -201,7 +188,7 @@ abstract class BaseAdmin extends AbstractAdmin
                     'choice_label' => $this->getEntityRelationDisplayField($targetEntity),
                     'multiple' => true,
                     'query_builder' => fn ($er) => $er->createQueryBuilder('e')
-                                                      ->orderBy('e.' . $this->getEntityRelationDisplayField($er->getClassName()), 'ASC'),
+                        ->orderBy('e.' . $this->getEntityRelationDisplayField($er->getClassName()), 'ASC'),
                 ];
 
                 switch ($this->formManyToManyPresentation) {
@@ -250,7 +237,7 @@ abstract class BaseAdmin extends AbstractAdmin
                     'multiple' => false,
                     'query_builder' => function ($er) {
                         $qb = $er->createQueryBuilder('e')
-                                 ->orderBy('e.' . $this->getEntityRelationDisplayField($er->getClassName()), 'ASC');
+                            ->orderBy('e.' . $this->getEntityRelationDisplayField($er->getClassName()), 'ASC');
                         // отключаем join'ы, если в ignore указаны вложенные поля
                         //                        foreach ($nestedIgnores as $ignore) {
                         //                            $parts = explode('.', $ignore);
@@ -359,63 +346,9 @@ abstract class BaseAdmin extends AbstractAdmin
         return 'id';
     }
 
+    /**Базовый метод сонаты*/
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
-        /**Настройки таблицы, получение и запись*/
-        $collection->add('getSettings');
-        $collection->add('setSettings');
-        $collection->add('orderChanged');
-    }
-
-    /**Метод для формирования кнопок действий - над правой частью таблицы
-     * @param array $buttonList
-     * @param string $action
-     * @param object|null $object
-     * @return array
-     */
-    protected function configureActionButtons(array $buttonList, string $action, ?object $object = null): array
-    {
-        /**Добавляем кнопку только на список - кнопка-просмотр дерева операций*/
-        if ('list' === $action) {
-            $buttonList['settings'] = [
-                'template' => '@SlcorpAdmin/Button/modal_button.twig',
-                'parameters' => [
-                    'label' => 'Настройки',
-                    'icon' => 'fa fa-gears',
-                    'data_getter' => $this->generateUrl('getSettings'),
-                    'data_action' => $this->generateUrl('setSettings'),
-                    'table_name' => static::class,
-                ],
-            ];
-        }
-
-        return $buttonList;
-    }
-
-    /**Метод для формирования кнопок управления строкой в таблице
-     * @param array $actionNames
-     * @return array
-     */
-    protected function configureTableActionButtons(array $actionNames): array
-    {
-        $actions = [];
-        foreach ($actionNames as $actionName) {
-            $action = $actionName->value;
-            if ($this->capabilityService->isGranted($this, $action, $this)) {
-                $actions[$action] = [
-                    'label' => $this->translator->trans($action),
-                ];
-            }
-        }
-
-        return $actions;
-    }
-
-    protected function configureBatchActions(array $actions): array
-    {
-        unset($actions['delete']);
-
-        return $actions;
     }
 
     /**Метод должен возвращать ассоциативный массив вида ['field_name' => 'Название поля']
@@ -431,23 +364,7 @@ abstract class BaseAdmin extends AbstractAdmin
      */
     protected function ignoreTableFieldsList(): array
     {
-        return [
-            'delete',
-            'deleted_at',
-            'time_created',
-            'time_modified',
-            'created_at',
-            'updated_at',
-            'createdAt',
-            'updatedAt',
-            'user_created',
-            'user_modified',
-            'created_by',
-            'updated_by',
-            'createdBy',
-            'updatedBy',
-            'password',
-        ];
+        return array_merge(['delete', 'password'], self::TIME_FIELDS, self::USER_FIELDS);
     }
 
     /**Должен возвращать список исключаемых полей из формы
@@ -455,46 +372,12 @@ abstract class BaseAdmin extends AbstractAdmin
      */
     protected function ignoreFormFieldsList(): array
     {
-        return [
-            'id',
-            'delete',
-            'deleted_at',
-            'time_created',
-            'time_modified',
-            'created_at',
-            'updated_at',
-            'createdAt',
-            'updatedAt',
-            'user_created',
-            'user_modified',
-            'created_by',
-            'updated_by',
-            'createdBy',
-            'updatedBy',
-            'password',
-        ];
+        return array_merge(['id', 'delete', 'password'], self::TIME_FIELDS, self::USER_FIELDS);
     }
 
     protected function ignoreShowFieldsList(): array
     {
-        return [
-            'id',
-            'delete',
-            'deleted_at',
-            'time_created',
-            'time_modified',
-            'created_at',
-            'updated_at',
-            'createdAt',
-            'updatedAt',
-            'user_created',
-            'user_modified',
-            'created_by',
-            'updated_by',
-            'createdBy',
-            'updatedBy',
-            'password',
-        ];
+        return array_merge(['id', 'delete', 'password'], self::TIME_FIELDS, self::USER_FIELDS);
     }
 
     /**Должен возвращать список исключаемых полей из фильтров
@@ -503,23 +386,7 @@ abstract class BaseAdmin extends AbstractAdmin
 
     protected function ignoreFiltersFieldsList(): array
     {
-        return [
-            'delete',
-            'deleted_at',
-            'time_created',
-            'time_modified',
-            'created_at',
-            'updated_at',
-            'createdAt',
-            'updatedAt',
-            'user_created',
-            'user_modified',
-            'created_by',
-            'updated_by',
-            'createdBy',
-            'updatedBy',
-            'password',
-        ];
+        return array_merge(['id', 'delete', 'password'], self::TIME_FIELDS, self::USER_FIELDS);
     }
 
     /**Метод для переопределения namespace операций для проверки доступа, если не задано то определяется из сущности*/

@@ -6,6 +6,10 @@ services:
     autowire: true
     autoconfigure: true
 
+  _instanceof:
+    Sonata\AdminBundle\Admin\AdminExtensionInterface:
+      tags: [ 'slcorp.admin.extension' ]
+
   Slcorp\AdminBundle\:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -16,3 +20,13 @@ services:
   sonata.admin.controller.crud:
     class: Slcorp\AdminBundle\Presentation\Controller\BaseCRUDController
 
+
+  Slcorp\AdminBundle\Application\Component\Extensions\AdminControlExtension:
+    tags: ['slcorp.admin.extension']
+
+  Slcorp\AdminBundle\Application\Component\Extensions\UserSettingsExtension:
+    tags: ['slcorp.admin.extension']
+
+  Slcorp\AdminBundle\Application\Component\BaseAdmin:
+    arguments:
+      $extensions: !tagged_iterator slcorp.admin.extension

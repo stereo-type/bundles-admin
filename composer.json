@@ -1,7 +1,7 @@
 {
   "name": "slcorp/admin-bundle",
   "type": "symfony-bundle",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "require": {
     "php": ">=8.4",
     "twig/twig": "^3.20",
