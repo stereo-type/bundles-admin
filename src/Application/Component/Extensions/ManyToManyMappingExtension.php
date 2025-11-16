@@ -109,10 +109,6 @@ class ManyToManyMappingExtension implements AdminExtensionInterface
 
     public function preUpdate(AdminInterface $admin, object $object): void
     {
-    }
-
-    public function postUpdate(AdminInterface $admin, object $object): void
-    {
         $metadata = $this->entityManager->getClassMetadata(get_class($object));
         $unitOfWork = $this->entityManager->getUnitOfWork();
 
@@ -134,6 +130,11 @@ class ManyToManyMappingExtension implements AdminExtensionInterface
                 }
             }
         }
+    }
+
+    public function postUpdate(AdminInterface $admin, object $object): void
+    {
+
     }
 
     public function prePersist(AdminInterface $admin, object $object): void
