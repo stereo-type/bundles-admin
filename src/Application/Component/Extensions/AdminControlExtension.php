@@ -24,16 +24,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @phpstan-template T of object
+ *
  * @template-implements AdminExtensionInterface<T>
+ *
  * @phpstan-method void preBatchAction(AdminInterface<T> $admin, string $actionName, ProxyQueryInterface<T> $query, array &$idx, bool $allElements)
  */
 class AdminControlExtension implements AdminExtensionInterface
 {
-    /** @var BaseAdmin<T> $admin */
+    /** @var BaseAdmin<T> */
     private BaseAdmin $admin;
 
     public function __construct(
-        protected TranslatorInterface        $translator,
+        protected TranslatorInterface $translator,
         protected CapabilityServiceInterface $capabilityService,
     ) {
     }
@@ -104,13 +106,13 @@ class AdminControlExtension implements AdminExtensionInterface
         /**Добавляем кнопку только на список - кнопка-просмотр дерева операций*/
         if ('list' === $action) {
             $list['settings'] = [
-                'template'   => '@SlcorpAdmin/Button/modal_button.twig',
+                'template' => '@SlcorpAdmin/Button/modal_button.twig',
                 'parameters' => [
-                    'label'       => 'Настройки',
-                    'icon'        => 'fa fa-gears',
+                    'label' => 'Настройки',
+                    'icon' => 'fa fa-gears',
                     'data_getter' => $this->admin->generateUrl('getSettings'),
                     'data_action' => $this->admin->generateUrl('setSettings'),
-                    'table_name'  => $admin::class,
+                    'table_name' => $admin::class,
                 ],
             ];
         }

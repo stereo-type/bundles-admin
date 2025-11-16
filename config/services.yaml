@@ -18,7 +18,7 @@ services:
         - !tagged_iterator slcorp.admin.extension
 
   Slcorp\AdminBundle\:
-    resource: '../src/*'
+    resource: '../src/*'!
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
   Slcorp\AdminBundle\Application\Component\Form\DynamicEntityTypeExtension:
@@ -32,4 +32,7 @@ services:
     tags: ['slcorp.admin.extension']
 
   Slcorp\AdminBundle\Application\Component\Extensions\UserSettingsExtension:
+    tags: ['slcorp.admin.extension']
+
+  Slcorp\AdminBundle\Application\Component\Extensions\ManyToManyMappingExtension:
     tags: ['slcorp.admin.extension']

@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace Slcorp\AdminBundle\Application\Component\Extensions;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\PersistentCollection;
 use Knp\Menu\ItemInterface as MenuItemInterface;
-use Slcorp\AdminBundle\Application\Component\BaseAdmin;
-use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
-use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
 use Sonata\AdminBundle\Admin\AdminExtensionInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -29,15 +29,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @phpstan-method void preBatchAction(AdminInterface<T> $admin, string $actionName, ProxyQueryInterface<T> $query, array &$idx, bool $allElements)
  */
-class UserSettingsExtension implements AdminExtensionInterface
+class ManyToManyMappingExtension implements AdminExtensionInterface
 {
-    /** @var BaseAdmin<T> */
-    private BaseAdmin $admin;
-
     public function __construct(
         protected TranslatorInterface $translator,
-        protected CapabilityServiceInterface $capabilityService,
-        protected TableUserPreferenceService $userPreferenceService,
+        protected EntityManagerInterface $entityManager,
     ) {
     }
 
@@ -46,10 +42,10 @@ class UserSettingsExtension implements AdminExtensionInterface
      */
     public function configure(AdminInterface $admin): void
     {
-        if (!$admin instanceof BaseAdmin) {
-            throw new \RuntimeException('Incorrect admin class');
-        }
-        $this->admin = $admin;
+        //        if (!$admin instanceof BaseAdmin) {
+        //            throw new \RuntimeException('Incorrect admin class');
+        //        }
+        //        $this->admin = $admin;
     }
 
     public function configureFormFields(FormMapper $form): void
@@ -58,16 +54,6 @@ class UserSettingsExtension implements AdminExtensionInterface
 
     public function configureListFields(ListMapper $list): void
     {
-        $userPreferences = $this->admin->userPreferences();
-        $order = $this->userPreferenceService->tableOrder($userPreferences);
-        $hidden = $this->userPreferenceService->tableHidden($userPreferences);
-
-        // При первичной инициализации записываем настройки пользователей - все поля по умолчанию включены
-        if (empty($order) && empty($hidden)) {
-            $tableData = $userPreferences->getTableData();
-            $tableData['order'] = array_values(array_filter($list->keys(), static fn ($key) => !in_array($list->get($key)->getType(), ['actions', 'batch'])));
-            $this->userPreferenceService->setTableData($userPreferences->getTableClass(), $tableData);
-        }
     }
 
     public function configureDatagridFilters(DatagridMapper $filter): void
@@ -80,10 +66,6 @@ class UserSettingsExtension implements AdminExtensionInterface
 
     public function configureRoutes(AdminInterface $admin, RouteCollectionInterface $collection): void
     {
-        /**Настройки таблицы, получение и запись*/
-        $collection->add('getSettings');
-        $collection->add('setSettings');
-        $collection->add('orderChanged');
     }
 
     public function configureTabMenu(AdminInterface $admin, MenuItemInterface $menu, string $action, ?AdminInterface $childAdmin = null): void
@@ -131,6 +113,27 @@ class UserSettingsExtension implements AdminExtensionInterface
 
     public function postUpdate(AdminInterface $admin, object $object): void
     {
+        $metadata = $this->entityManager->getClassMetadata(get_class($object));
+        $unitOfWork = $this->entityManager->getUnitOfWork();
+
+        // Проходим по всем ManyToMany ассоциациям
+        foreach ($metadata->getAssociationMappings() as $fieldName => $mapping) {
+            if (ClassMetadata::MANY_TO_MANY === $mapping['type']) {
+                // Принудительно пересчитываем изменения для этого поля
+                $unitOfWork->recomputeSingleEntityChangeSet($metadata, $object);
+
+                // Дополнительно помечаем коллекцию как измененную
+                $collection = $metadata->getFieldValue($object, $fieldName);
+                if ($collection instanceof PersistentCollection && !$collection->isDirty()) {
+                    // Создаем новую коллекцию с теми же элементами, чтобы Doctrine увидела изменение
+                    $currentValues = $collection->toArray();
+                    $collection->clear();
+                    foreach ($currentValues as $item) {
+                        $collection->add($item);
+                    }
+                }
+            }
+        }
     }
 
     public function prePersist(AdminInterface $admin, object $object): void
