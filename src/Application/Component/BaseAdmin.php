@@ -9,9 +9,12 @@ declare(strict_types=1);
 
 namespace Slcorp\AdminBundle\Application\Component;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\AssociationMapping;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\MappingException;
+use Slcorp\AdminBundle\Application\Component\Form\EnumToStringTransformer;
 use Slcorp\AdminBundle\Application\Component\Form\FormManyToManyPresentation;
 use Slcorp\AdminBundle\Application\Service\CapabilityServiceInterface;
 use Slcorp\AdminBundle\Application\Service\TableUserPreferenceService;
@@ -23,6 +26,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\CollectionType;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -161,17 +165,18 @@ abstract class BaseAdmin extends AbstractAdmin
     }
 
     /**Метод генерации полей формы
-     * @param FormMapper $form
+     * @param FormMapper<T> $form
      * @return void
      */
     protected function configureFormFields(FormMapper $form): void
     {
         $ignoreFieldsList = $this->ignoreFormFieldsList;
+        $metadata = $this->entityMetadata();
 
         foreach ($this->entityFields() as $fieldName) {
             $options = $this->commonOptions($fieldName);
             if (!in_array($fieldName, $ignoreFieldsList, true)) {
-                $form->add($fieldName, options: $options);
+                $this->addFormField($form, $fieldName, $options, $metadata);
             }
         }
         foreach ($this->entityAssociations() as $association) {
@@ -261,6 +266,116 @@ abstract class BaseAdmin extends AbstractAdmin
                 $form->add($fieldName, null, $options);
             }
             // Если СВЯЗЬ - не "ко многим", то пока что ничего не делаем, может потом добавится логика
+        }
+
+        $this->addFormEventListeners($form, $metadata);
+    }
+
+    /**
+     * Метод рендера элемента формы.
+     *
+     * @param FormMapper<T>    $form
+     * @param ClassMetadata<T> $metadata
+     *
+     * @throws MappingException
+     */
+    private function addFormField(FormMapper $form, string $fieldName, array $options, ClassMetadata $metadata): void
+    {
+        $fieldMapping = $metadata->getFieldMapping($fieldName);
+        $type = $fieldMapping->type;
+        if (Types::ENUM === $type) {
+            $this->addEnumFormField($form, $fieldName, $options, $metadata);
+        } else {
+            $form->add($fieldName, options: $options);
+        }
+    }
+
+    /**
+     * @param FormMapper<T>    $form
+     * @param ClassMetadata<T> $metadata
+     *
+     * @throws MappingException
+     */
+    private function addEnumFormField(FormMapper $form, string $fieldName, array $options, ClassMetadata $metadata): void
+    {
+        $fieldMapping = $metadata->getFieldMapping($fieldName);
+        $subject = $this->getSubject();
+        if (isset($fieldMapping['enumType']) && is_string($fieldMapping['enumType'])) {
+            $enumClass = $fieldMapping['enumType'];
+            if (class_exists($enumClass) && enum_exists($enumClass)) {
+                $cases = $enumClass::cases();
+                $choices = [];
+                foreach ($cases as $case) {
+                    $value = property_exists($case, 'value') ? $case->value : $case->name;
+
+                    $label = $value;
+                    $transKey = strtolower(str_replace('\\', '.', $enumClass)) . '.' . strtolower($value);
+                    $translated = $this->translator->trans($transKey);
+                    if ($translated !== $transKey) {
+                        $label = $translated;
+                    }
+
+                    $choices[$label] = $value;
+                }
+
+                $currentValue = null;
+
+                if (method_exists($subject, 'get' . ucfirst($fieldName))) {
+                    $getter = 'get' . ucfirst($fieldName);
+                    $enumValue = $subject->$getter();
+                    if ($enumValue instanceof \UnitEnum) {
+                        $currentValue = property_exists($enumValue, 'value') ? $enumValue->value : $enumValue->name;
+                    }
+                }
+
+                $form->add($fieldName, ChoiceType::class, [
+                    'label' => $this->translator->trans($fieldName),
+                    'choices' => $choices,
+                    'data' => $currentValue,
+                    'choice_value' => static function ($choice) {
+                        if ($choice instanceof \UnitEnum) {
+                            return property_exists($choice, 'value') ? $choice->value : $choice->name;
+                        }
+
+                        return $choice;
+                    },
+                    'required' => !$metadata->isNullable($fieldName),
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Метод для подключения обработчиков формы.
+     *
+     * @param FormMapper<T>    $form
+     * @param ClassMetadata<T> $metadata
+     *
+     * @throws MappingException
+     */
+    private function addFormEventListeners(FormMapper $form, ClassMetadata $metadata): void
+    {
+        $formBuilder = $form->getFormBuilder();
+
+        $fields = $this->entityFields();
+
+        foreach ($fields as $fieldName) {
+            if (!$form->has($fieldName)) {
+                continue;
+            }
+
+            $fieldBuilder = $formBuilder->get($fieldName);
+            $fieldMapping = $metadata->getFieldMapping($fieldName);
+            $type = $fieldMapping->type;
+
+            /* Для ENUM устанавливаем свой трансформер */
+            if ((Types::ENUM === $type) && isset($fieldMapping['enumType']) && is_string($fieldMapping['enumType'])) {
+                $enumClass = $fieldMapping['enumType'];
+                if (class_exists($enumClass) && enum_exists($enumClass)) {
+                    $transformer = new EnumToStringTransformer($enumClass);
+                    $fieldBuilder->addModelTransformer($transformer);
+                }
+            }
         }
     }
 

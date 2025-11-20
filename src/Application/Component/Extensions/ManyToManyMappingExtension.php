@@ -134,7 +134,6 @@ class ManyToManyMappingExtension implements AdminExtensionInterface
 
     public function postUpdate(AdminInterface $admin, object $object): void
     {
-
     }
 
     public function prePersist(AdminInterface $admin, object $object): void
