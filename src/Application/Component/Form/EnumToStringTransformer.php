@@ -30,7 +30,11 @@ class EnumToStringTransformer implements DataTransformerInterface
             return null;
         }
 
-        return property_exists($value, 'value') ? $value->value : $value->name;
+        if ($value instanceof \UnitEnum) {
+            return property_exists($value, 'value') ? $value->value : $value->name;
+        }
+
+        return $value;
     }
 
     /**
